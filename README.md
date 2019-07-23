@@ -8,10 +8,10 @@
 ### To start
 
 - update file variables.tf with
--- ssh_key => public part of SSH key
--- ssh_priv => private part of SSH key
--- access_key => AWS account API access key
--- secret_key => AWS account API secret key
+- ssh_key => public part of SSH key
+- ssh_priv => private part of SSH key
+- access_key => AWS account API access key
+- secret_key => AWS account API secret key
 
 ### Output
 
