@@ -121,6 +121,7 @@ data "template_file" "init_sh" {
     dependencies = file("./ansible/dependencies.yml")
     master       = file("./ansible/master.yml")
     workers      = file("./ansible/workers.yml")
+    tiller_rbac      = file("./ansible/tiller_rbac.yaml")
   }
 }
 
@@ -188,4 +189,3 @@ resource "aws_instance" "worker2" {
     Name = "worker2"
   }
 }
-

@@ -30,3 +30,25 @@
       args:
         chdir: ~/
         creates: pod_network_setup.txt
+
+    - name: install helm
+      become: yes
+      shell: snap install helm --classic
+      
+    - name: copy tiller config
+      become: yes
+      become_user: ubuntu
+      copy:
+        src: /tmp/ansible/tiller_rbac.yaml
+        dest: /tmp/tiller_rbac.yaml
+        owner: ubuntu
+        mode: '0644'
+
+    - name: create tiller service user
+      become: yes
+      become_user: ubuntu
+      shell: kubectl create -f /tmp/tiller_rbac.yaml
+
+    - name: init tiller
+      become_user: ubuntu
+      shell: "/snap/bin/helm init --service-account tiller --history-max 150"

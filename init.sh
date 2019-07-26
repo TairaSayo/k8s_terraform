@@ -32,6 +32,10 @@ EOF
 cat <<EOF > /tmp/ansible/workers.yml
 ${workers}
 EOF
-ansible-playbook -i hosts /tmp/ansible/dependencies.yml
-ansible-playbook -i hosts /tmp/ansible/master.yml
-ansible-playbook -i hosts /tmp/ansible/workers.yml
+cat <<EOF > /tmp/ansible/tiller_rbac.yaml
+${tiller_rbac}
+EOF
+cd /tmp/ansible/
+ansible-playbook -i hosts dependencies.yml
+ansible-playbook -i hosts master.yml
+ansible-playbook -i hosts workers.yml
